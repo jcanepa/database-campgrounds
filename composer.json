@@ -1,0 +1,17 @@
+{
+    "name": "jcanepa/database-campgrounds",
+    "description": "'A model of the reservation system for National Park Service campgrounds.'",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jcanepa\\DatabaseCampgrounds\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julian Canepa",
+            "email": "julian.l.canepa@gmail.com"
+        }
+    ],
+    "require": {}
+}
