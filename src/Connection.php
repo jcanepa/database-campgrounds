@@ -4,11 +4,10 @@ namespace Jcanepa\DatabaseCampgrounds;
 
 class Connection
 {
-
     public static function make($config)
     {
         try {
-            //return new PDO('mysql:host=127.0.0.1;dbname=mytap_wordpress','homestead','secret');
+            //return new PDO('mysql:host=127.0.0.1;dbname=nps_campgrounds','root','secret');
             return new \PDO(
                 $config['connection'].';dbname='.$config['name'],
                 $config['username'],
@@ -17,8 +16,9 @@ class Connection
             );
 
         } catch ( \PDOException $e ){
-            echo 'Whoops! Something went wrong during your database query execution.';
-            die( $e->getMessage() );
+            echo 'Whoops! Something went wrong while connecting to a database.';
+            die(
+                $e->getMessage());
         }
     }
 }

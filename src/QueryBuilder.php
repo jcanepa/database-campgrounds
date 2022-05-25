@@ -18,6 +18,6 @@ class QueryBuilder
         $query->execute();
 
         return $query->fetchAll(
-            \PDO::FETCH_CLASS);
+            \PDO::FETCH_ASSOC);
     }
 }
