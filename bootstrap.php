@@ -8,7 +8,7 @@ use Jcanepa\DatabaseCampgrounds\QueryBuilder;
 $config = require 'config.php';
 
 $db = new QueryBuilder(
-    Connection::make($config['database']));
+        Connection::make($config['database']));
 
 /** Accept incoming json requests from vue.js */
 $query = json_decode(
