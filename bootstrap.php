@@ -7,11 +7,15 @@ use Jcanepa\DatabaseCampgrounds\QueryBuilder;
 
 $config = require 'config.php';
 
-
-// var_dump($_POST);
-// die();
-
 $db = new QueryBuilder(
-        Connection::make($config['database']));
+    Connection::make($config['database']));
 
-echo json_encode($db->run('select * from national_parks;'));
+/** Accept incoming json requests from vue.js */
+$query = json_decode(
+    file_get_contents('php://input')
+    )->sql_statement;
+
+if (!$query) return [];
+
+echo json_encode(
+    $db->run($query));
