@@ -17,8 +17,7 @@ class Connection
 
         } catch ( \PDOException $e ){
             echo 'Whoops! Something went wrong while connecting to a database.';
-            die(
-                $e->getMessage());
+            return $e->getMessage();
         }
     }
 }

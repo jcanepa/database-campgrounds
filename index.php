@@ -22,7 +22,7 @@
                     <div class="md:block">
                         <div class="ml-4 flex items-center md:ml-6">
                             <div class="ml-3 relative">
-                                <a href="https://github.com/jcanepa/database-campgrounds" class="max-w-xs bg-gray-900 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                <a href="https://github.com/jcanepa/database-campgrounds" class="max-w-xs rounded-full flex items-center">
                                     <img class="h-8 w-8 rounded-full" src="https://avatars.githubusercontent.com/u/3414201?v=4" alt="">
                                 </a>
                             </div>
@@ -43,20 +43,21 @@
         <main id="app">
             <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="mb-4 max-w-md">
-                        <input v-model="query" placeholder="Enter your query" type="text" class="rounded-md shadow-sm text-md p-3">
-                        <input type="button" value="Run" v-on:click="execute" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white focus:outline-none cursor-pointer bg-amber-700 hover:bg-amber-800 py-3">
+                    <div class="mb-4 max-w-lg">
+                        <input v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3 w-96">
+                        <input v-on:click="execute" type="button" value="Run" class="inline-flex justify-center py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
                     </div>
-                    <p v-if="db_request_error" color="red">
-                        {{ db_request_error }}
-                    </p>
-                    <div class="border-4 border-dashed border-gray-200 rounded-lg h-96 p-5">
+                    <p v-if="db_request_error" color="text-red-600">ERROR {{ db_request_error }}</p>
+                    <div class="border-4 border-dashed border-gray-200 rounded-lg p-5">
                         <div v-if="results.length > 0">
-                            Your query: {{ last_query }}
-                            {{ results }}
-                            <ul>
+                            <pre><strong>{{ last_query }}</strong></pre>
+                            <br>
+                            <pre class="my-4">{{ results }}</pre>
+                            <ul v-if="has_results">
                                 <li v-for="result in results">
-                                    {{ result }}
+                                    <span v-for="(value, key) in result" class="mr-4">
+                                        {{ value }}
+                                    </span>
                                 </li>
                             </ul>
                         </div>
@@ -96,6 +97,11 @@
                     .catch(error => {
                         this.db_request_error = error;
                     });
+                },
+            },
+            computed: {
+                has_results() {
+                    return Array.isArray(this.results);
                 }
             }
         })
