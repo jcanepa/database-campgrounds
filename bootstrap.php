@@ -2,6 +2,7 @@
 
 require 'vendor/autoload.php';
 
+use Jcanepa\DatabaseCampgrounds\Configuration;
 use Jcanepa\DatabaseCampgrounds\Connection;
 use Jcanepa\DatabaseCampgrounds\QueryBuilder;
 
@@ -12,10 +13,10 @@ $query = json_decode(
 
 if (!$query) return [];
 
-$config = require 'config.php';
+$config = new Configuration();
 
 $db = new QueryBuilder(
-        Connection::make($config['database']));
+        Connection::make($config->mysql()));
 
 echo json_encode(
     $db->run($query));
