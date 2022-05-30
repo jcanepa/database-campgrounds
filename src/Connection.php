@@ -8,7 +8,7 @@ class Connection
     {
         try {
             $sqlite_file = __DIR__. '/db.sqlite';
-            $pdo = new PDO('sqlite:'. $sqlite_file);
+            return new \PDO('sqlite:'. $sqlite_file);
 
         } catch ( \PDOException $e ){
             echo 'Whoops! Something went wrong while connecting to a database.';

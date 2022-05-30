@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NPS Campgrounds</title>
+    <style>
+        dl:nth-child(even) {
+            background-color: rgb(248 250 252);
+        }
+        dl:nth-child(odd) {
+            background-color: rgb(226 232 240);
+        }
+    </style>
 </head>
 <body class="h-full">
     <div class="min-h-full">
@@ -53,13 +61,23 @@
                             <pre><strong>{{ last_query }}</strong></pre>
                             <br>
                             <pre class="my-4">{{ results }}</pre>
-                            <ul v-if="has_results">
-                                <li v-for="result in results">
-                                    <span v-for="(value, key) in result" class="mr-4">
-                                        {{ value }}
-                                    </span>
-                                </li>
-                            </ul>
+                            <div v-if="has_results" class="bg-white shadow overflow-hidden sm:rounded-lg">
+                                <div class="px-4 py-5 sm:px-6">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Results</h3>
+                                </div>
+                                <div class="border-t border-gray-200">
+                                    <dl v-for="result in results" >
+                                        <div v-for="(value, key) in result" class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-500">
+                                                {{ key }}
+                                            </dt>
+                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ value }}
+                                            </dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
                         </div>
                         <p v-else>
                             No results.
