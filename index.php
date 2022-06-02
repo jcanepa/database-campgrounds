@@ -55,29 +55,31 @@
                         <input v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3 w-96">
                         <input v-on:click="execute" type="button" value="Run" class="inline-flex justify-center py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
                     </div>
-                    <p v-if="db_request_error" color="text-red-600">ERROR {{ db_request_error }}</p>
+                    <p v-if="db_request_error" color="text-red-600">
+                        ERROR {{ db_request_error }}
+                    </p>
                     <div class="border-4 border-dashed border-gray-200 rounded-lg p-5">
-                        <div v-if="results.length > 0">
+                        <div v-if="has_results">
                             <pre><strong>{{ last_query }}</strong></pre>
                             <br>
                             <pre class="my-4">{{ results }}</pre>
-                            <div v-if="has_results" class="bg-white shadow overflow-hidden sm:rounded-lg">
-                                <div class="px-4 py-5 sm:px-6">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Results</h3>
-                                </div>
-                                <div class="border-t border-gray-200">
-                                    <dl v-for="result in results" >
-                                        <div v-for="(value, key) in result" class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">
-                                                {{ key }}
-                                            </dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ value }}
-                                            </dd>
-                                        </div>
-                                    </dl>
-                                </div>
-                            </div>
+
+                            <table v-if="has_results" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th v-for="header in this.column_headers" scope="col" class="px-6 py-3">
+                                            {{ header }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="result in results" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td v-for="(value, key) in result"  class="w-4 p-4">
+                                            {{ value }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <p v-else>
                             No results.
@@ -119,7 +121,13 @@
             },
             computed: {
                 has_results() {
-                    return Array.isArray(this.results);
+                    return Array.isArray(this.results) && this.results.length > 0;
+                },
+                column_headers() {
+                    if (!this.has_results) {
+                        return [];
+                    }
+                    return Object.keys(this.results[1]);
                 }
             }
         })
