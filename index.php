@@ -6,12 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NPS Campgrounds</title>
     <style>
-        dl:nth-child(even) {
-            background-color: rgb(248 250 252);
-        }
-        dl:nth-child(odd) {
-            background-color: rgb(226 232 240);
-        }
+        dl:nth-child(even) {background-color: rgb(248 250 252)}
+        dl:nth-child(odd) {background-color: rgb(226 232 240)}
     </style>
 </head>
 <body class="h-full">
@@ -62,7 +58,7 @@
                         <div v-if="has_results">
                             <pre><strong>{{ last_query }}</strong></pre>
                             <br>
-                            <pre class="my-4">{{ results }}</pre>
+                            <pre class="my-4 hidden">{{ results }}</pre>
 
                             <table v-if="has_results" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -101,6 +97,14 @@
                     results: [],
                     queries: [
                         'select * from national_parks;',
+                        'select * from campgrounds;',
+                        'select * from campground_amenities;',
+                        'select * from employees;',
+                        'select * from hosts;',
+                        'select * from campsites;',
+                        'select * from stays;',
+                        'select * from parties;',
+                        'select * from payments;',
                     ],
                     db_request_error: null
                 }
@@ -121,13 +125,14 @@
             },
             computed: {
                 has_results() {
-                    return Array.isArray(this.results) && this.results.length > 0;
+                    return Array.isArray(this.results)
+                        && this.results.length > 0;
                 },
                 column_headers() {
                     if (!this.has_results) {
-                        return [];
-                    }
-                    return Object.keys(this.results[1]);
+                        return [] }
+                    return Object.keys(
+                        this.results[1]);
                 }
             }
         })

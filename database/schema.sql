@@ -17,17 +17,17 @@ drop table if exists national_parks;
 create table national_parks (
 	`name` VARCHAR(20) PRIMARY KEY UNIQUE NOT NULL,
 	`designation` VARCHAR(20),
-	`state` VARCHAR(20));
+	`state` VARCHAR(2));
 
 create table campgrounds (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`national_park` VARCHAR(20) NOT NULL,
 	`name` VARCHAR(20),
-	`location` VARCHAR(20),
+	`location` VARCHAR(255),
 	`check_in_time` VARCHAR(20),
 	`check_out_time` VARCHAR(20),
 	`open_season` VARCHAR(20),
-	`map_image_url` VARCHAR(20),
+	`map_image_url` VARCHAR(255),
 	FOREIGN KEY (`national_park`) REFERENCES national_parks(`name`));
 
 create table campground_amenities (

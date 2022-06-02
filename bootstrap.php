@@ -13,10 +13,10 @@ $query = json_decode(
 
 if (!$query) return [];
 
-$config = new Configuration();
+$config = require 'config.php';
 
 $db = new QueryBuilder(
-        Connection::make($config->mysql()));
+        Connection::make($config['database']));
 
 echo json_encode(
     $db->run($query));

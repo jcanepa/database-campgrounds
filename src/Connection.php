@@ -7,11 +7,14 @@ class Connection
     public static function make($config)
     {
         try {
-            $sqlite_file = __DIR__. '/db.sqlite';
-            return new \PDO('sqlite:'. $sqlite_file);
+            return new \PDO(
+                $config['connection'].';dbname='.$config['name'],
+                $config['username'],
+                $config['password'],
+                $config['options']
+            );
 
         } catch ( \PDOException $e ){
-            echo 'Whoops! Something went wrong while connecting to a database.';
             return $e->getMessage();
         }
     }
