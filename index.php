@@ -131,8 +131,7 @@
                 column_headers() {
                     if (!this.has_results) {
                         return [] }
-                    return Object.keys(
-                        this.results[0]);
+                    return Object.keys(this.results[0]);
                 }
             }
         })

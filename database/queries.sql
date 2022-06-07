@@ -94,7 +94,11 @@ insert into employees (`first_name`, `last_name`, `national_park`, `job_type`) v
 
 -- Place employees at their host stations
 insert into hosts (`employee_id`, `campground_id`, `campsite_id`, `services`, `office_hours`) values
-    (1, 1, );
+    (1, 1, 1, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
+    (1, 2, 2, 'Electronic payments accepted, internet access', '8-noon everyday'),
+    (2, 7, 8, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
+    (4, 13, 13, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
+    (5, 14, 20, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday');
 
 -- Seed some parties
 

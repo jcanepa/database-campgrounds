@@ -13,12 +13,16 @@ drop table if exists campground_amenities;
 drop table if exists campgrounds;
 drop table if exists national_parks;
 
--- create relational tables
+-- create relational tables:
+-- creation statements are titled with a comment that matches the entity name used in the relational schema
+
+-- NATIONAL_PARK
 create table national_parks (
 	`name` VARCHAR(20) PRIMARY KEY UNIQUE NOT NULL,
 	`designation` VARCHAR(20),
 	`state` VARCHAR(2));
 
+-- CAMPGROUND
 create table campgrounds (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`national_park` VARCHAR(20) NOT NULL,
@@ -30,11 +34,13 @@ create table campgrounds (
 	`map_image_url` VARCHAR(255),
 	FOREIGN KEY (`national_park`) REFERENCES national_parks(`name`));
 
+-- CAMPGROUND_AMENITY
 create table campground_amenities (
 	`campground_id` INT NOT NULL,
 	`feature` VARCHAR(50),
 	FOREIGN KEY (`campground_id`) REFERENCES campgrounds(`id`));
 
+-- CAMPSITE
 create table campsites (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`campground_id` INT NOT NULL,
@@ -46,6 +52,7 @@ create table campsites (
 	`is_reservable` BOOLEAN,
 	FOREIGN KEY (`campground_id`) REFERENCES campgrounds(`id`));
 
+-- EMPLOYEE
 create table employees (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`first_name` VARCHAR(20),
@@ -54,6 +61,7 @@ create table employees (
 	`job_type` VARCHAR(20),
 	FOREIGN KEY (`national_park`) REFERENCES national_parks(`name`));
 
+-- HOST
 create table hosts (
 	`employee_id` INT NOT NULL,
 	`campground_id` INT NOT NULL,
@@ -64,6 +72,7 @@ create table hosts (
 	FOREIGN KEY (`campground_id`) REFERENCES campgrounds(`id`),
 	FOREIGN KEY (`campsite_id`) REFERENCES campsites(`id`));
 
+-- PARTY
 create table parties (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`first_name` VARCHAR(20),
@@ -73,6 +82,7 @@ create table parties (
 	`size` INT,
 	`vehicles` INT);
 
+-- STAY
 create table stays (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`campsite_id` INT NOT NULL,
@@ -83,6 +93,7 @@ create table stays (
 	FOREIGN KEY (`campsite_id`) REFERENCES campsites(`id`),
 	FOREIGN KEY (`party_id`) REFERENCES parties(`id`));
 
+-- PAYMENT
 create table payments (
 	`stay_id` INT NOT NULL,
 	`party_id` INT NOT NULL,
