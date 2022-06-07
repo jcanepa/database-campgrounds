@@ -32,14 +32,14 @@ create table campgrounds (
 
 create table campground_amenities (
 	`campground_id` INT NOT NULL,
-	`feature` VARCHAR(20),
+	`feature` VARCHAR(50),
 	FOREIGN KEY (`campground_id`) REFERENCES campgrounds(`id`));
 
 create table campsites (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`campground_id` INT NOT NULL,
 	`site_number` INT NOT NULL,
-	`type` VARCHAR(20),
+	`type` VARCHAR(50),
 	`fee` INT NOT NULL,
 	`capacity` INT,
 	`vehicle_capacity` INT,

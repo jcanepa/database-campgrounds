@@ -48,8 +48,8 @@
             <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div class="px-4 py-6 sm:px-0">
                     <div class="mb-4 max-w-lg">
-                        <input v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3 w-96">
-                        <input v-on:click="execute" type="button" value="Run" class="inline-flex justify-center py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
+                        <input v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3">
+                        <input v-on:click="execute" type="button" value="Submit" class="inline-flex justify-center py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
                     </div>
                     <p v-if="db_request_error" color="text-red-600">
                         ERROR {{ db_request_error }}
@@ -132,7 +132,7 @@
                     if (!this.has_results) {
                         return [] }
                     return Object.keys(
-                        this.results[1]);
+                        this.results[0]);
                 }
             }
         })
