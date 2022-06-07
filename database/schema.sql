@@ -66,7 +66,7 @@ create table hosts (
 	`employee_id` INT NOT NULL,
 	`campground_id` INT NOT NULL,
 	`campsite_id` INT NOT NULL,
-	`services` VARCHAR(20),
+	`services` VARCHAR(100),
 	`office_hours` VARCHAR(20),
 	FOREIGN KEY (`employee_id`) REFERENCES employees(`id`),
 	FOREIGN KEY (`campground_id`) REFERENCES campgrounds(`id`),
@@ -78,7 +78,7 @@ create table parties (
 	`first_name` VARCHAR(20),
 	`last_name` VARCHAR(20) NOT NULL,
 	`phone` VARCHAR(20),
-	`email` VARCHAR(20) NOT NULL,
+	`email` VARCHAR(50) NOT NULL,
 	`size` INT,
 	`vehicles` INT);
 
