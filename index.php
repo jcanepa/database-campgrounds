@@ -58,7 +58,6 @@
                         <div v-if="has_results">
                             <h2 class="text-base text-amber-900 font-semibold tracking-wide uppercase mb-1">Query</h2>
                             <pre><strong>{{ last_query }}</strong></pre>
-                            <br>
                             <h2 class="text-base text-amber-900 font-semibold tracking-wide uppercase mt-3 mb-1">Results</h2>
                             <pre class="my-4 hidden">{{ results }}</pre>
 

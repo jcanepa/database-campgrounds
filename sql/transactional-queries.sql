@@ -6,7 +6,7 @@ where hosts.services like '%first aid%'
 and campgrounds.national_park = 'Joshua Tree';
 
 -- Count the number of people camping on 6/17/22.
-select sum(parties.`size`)
+select sum(parties.`size`) as 'Number of people camping'
 from stays join parties on stays.party_id = parties.id
 where '2022-06-13' between start_date and DATE_ADD(start_date, INTERVAL duration DAY);
 
@@ -18,7 +18,7 @@ where amount_due > amount_paid;
 
 -- Show each campground in Joshua Tree NP and the number of available campsites it has.
 -- (excluding any sites that are occupied by a party or camp hosts)
-select name, count(*)
+select name as 'campground', count(*) as 'available campsites'
 from (campsites join campgrounds on campgrounds.id = campground_id)
 where national_park = 'Joshua Tree'
 and campsites.id not in (
