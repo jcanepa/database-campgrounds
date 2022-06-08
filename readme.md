@@ -15,4 +15,4 @@ This project uses `php8`, `composer`, [`vue.js`](https://vuejs.org/) and [Tailwi
 
 ## Web app
 
-[Check it out!]()
+[Check it out!](https://oregunclub.com/) (please excuse the random domain name)
