@@ -47,17 +47,19 @@
         <main id="app">
             <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="mb-4 max-w-lg">
-                        <input v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3">
-                        <input v-on:click="execute" type="button" value="Submit" class="inline-flex justify-center py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
+                    <div class="flex items-end mb-4 w-100">
+                        <textarea v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3 w-4/5 h-24"></textarea>
+                        <input v-on:click="execute" type="button" value="Submit" class="w-1/6 ml-2 py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
                     </div>
                     <p v-if="db_request_error" color="text-red-600">
                         ERROR {{ db_request_error }}
                     </p>
                     <div class="border-4 border-dashed border-gray-200 rounded-lg p-5">
                         <div v-if="has_results">
+                            <h2 class="text-base text-amber-900 font-semibold tracking-wide uppercase mb-1">Query</h2>
                             <pre><strong>{{ last_query }}</strong></pre>
                             <br>
+                            <h2 class="text-base text-amber-900 font-semibold tracking-wide uppercase mt-3 mb-1">Results</h2>
                             <pre class="my-4 hidden">{{ results }}</pre>
 
                             <table v-if="has_results" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

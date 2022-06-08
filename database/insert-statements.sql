@@ -10,10 +10,10 @@ insert into national_parks values
 insert into campgrounds (`national_park`, `name`, `location`, `check_in_time`, `check_out_time`, `open_season`, `map_image_url`) values
     ('Joshua Tree', 'Black Rock', 'NW corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
     ('Joshua Tree', 'Cottonwood', 'North border of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
-    ('Joshua Tree', 'Indian Cove', 'NW corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
-    ('Joshua Tree', 'Jumbo Rocks', 'NW corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
-    ('Joshua Tree', 'Hidden Valley', 'NW corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
-    ('Joshua Tree', 'White Tank', 'NW corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
+    ('Joshua Tree', 'Indian Cove', '1 mile west of the park entrance', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
+    ('Joshua Tree', 'Jumbo Rocks', 'Center of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
+    ('Joshua Tree', 'Hidden Valley', '7 miles down Red Tail Canyon road', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
+    ('Joshua Tree', 'White Tank', 'SE corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
     ('Point Reyes', 'Coast', '1.8-mile hike on Laguna and Fire Lane Trails', '2PM', '11AM', 'Spring', 'https://www.nps.gov/pore/planyourvisit/images/pic_campground_coast_06_180813_480x320.jpg'),
     ('Point Reyes', 'Glen', '4.6-mile hike from the Bear Valley Trailhead', '2PM', '11AM', 'Spring', 'https://www.nps.gov/pore/planyourvisit/images/pic_campground_coast_06_180813_480x320.jpg'),
     ('Point Reyes', 'Sky', 'On the western side of Mount Wittenberg at an elevation of 1025 feet', '2PM', '11AM', 'Spring', 'https://www.nps.gov/pore/planyourvisit/images/pic_campground_coast_06_180813_480x320.jpg'),
@@ -54,6 +54,7 @@ insert into campsites (`campground_id`, `site_number`, `type`, `fee`, `capacity`
     (1, 003, 'standard, non-electric', 2500, 4, 1, 0),
     (1, 004, 'rv, non-electric', 2500, 4, 1, 1),
     (1, 005, 'rv, full hookups', 2500, 4, 1, 1),
+    (1, 099, 'rv, full hookups', 0, 4, 1, 0),
     (2, 001, 'tent only, non-electric', 2500, 6, 1, 0),
     (2, 002, 'tent only, non-electric', 2500, 6, 1, 1),
     (2, 003, 'standard, non-electric', 2500, 4, 1, 1),
@@ -95,11 +96,13 @@ insert into employees (`first_name`, `last_name`, `national_park`, `job_type`) v
 
 -- Place employees at their host stations
 insert into hosts (`employee_id`, `campground_id`, `campsite_id`, `services`, `office_hours`) values
-    (1, 1, 1, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
-    (1, 2, 2, 'Electronic payments accepted, internet access', '8-noon everyday'),
-    (2, 7, 8, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
-    (4, 13, 13, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
-    (5, 14, 20, 'Firewood, first aid, marshmallows and soda for sale', '10-3pm everyday');
+    (1, 1, 6, 'firewood, first aid, marshmallows and soda for sale', '10-3pm everyday'),
+    (2, 2, 7, 'ice, first aid', '8-noon everyday'),
+    (3, 3, 11, 'first aid, CPR', '10-3pm everyday'),
+    (4, 4, 15, 'lifegaurd duty, tours', '10-3pm everyday'),
+    (5, 5, 20, 'outdoor education, first aid', '10-3pm everyday'),
+    (6, 6, 25, 'epipen, satillite phone', '10-3pm everyday'),
+    (7, 7, 27, 'internet access, hot cocoa', '10-3pm everyday');
 
 -- Seed some parties
 insert into parties (`first_name`, `last_name`, `phone`, `email`, `size`, `vehicles`) values
@@ -109,10 +112,10 @@ insert into parties (`first_name`, `last_name`, `phone`, `email`, `size`, `vehic
     ('Khan', 'Souphanousinphone', '409-777-4567', 'ksoup@gmail.com', 3, 1),
     ('Luanne', 'Platter-Kleinschmidt', '409-777-5678', 'missluanne@mangerbabies.net', 3, 1);
 
--- Seed some stays
+-- Seed some guest stays
 insert into stays (`campsite_id`, `party_id`, `start_date`, `duration`, `amount_due`) values
-    (1, 1, '2022-06-10', 4, 10000),
-    (2, 2, '2022-06-10', 4, 10000),
+    (1, 1, '2022-06-10', 8, 20000),
+    (2, 2, '2022-06-10', 8, 20000),
     (3, 3, '2022-06-10', 4, 10000),
     (4, 4, '2022-06-10', 4, 10000),
     (5, 5, '2022-06-10', 4, 10000);
