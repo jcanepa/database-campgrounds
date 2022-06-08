@@ -1,4 +1,5 @@
 -- Seed parks
+-- Source: https://www.nps.gov/findapark/index.htm
 insert into national_parks values
     ('Joshua Tree', 'Park', 'CA'),
     ('Point Reyes', 'Seashore', 'CA'),
@@ -7,6 +8,7 @@ insert into national_parks values
     ('Denali', 'Park & Preserve', 'AK');
 
 -- Seed some campgrounds
+-- Example source: https://www.nps.gov/jotr/planyourvisit/campgrounds.htm
 insert into campgrounds (`national_park`, `name`, `location`, `check_in_time`, `check_out_time`, `open_season`, `map_image_url`) values
     ('Joshua Tree', 'Black Rock', 'NW corner of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
     ('Joshua Tree', 'Cottonwood', 'North border of the park', '2PM', '11AM', 'Spring, Summer, Fall', 'https://www.nps.gov/jotr/planyourvisit/images/Black-Rock-Campground-web-Schwalbe_1.jpg'),
@@ -85,6 +87,7 @@ insert into campsites (`campground_id`, `site_number`, `type`, `fee`, `capacity`
     (11, 004, 'rv, non-electric', 2500, 4, 1, 1);
 
 -- Seed some employees who work as hosts
+-- Source: https://peepshow.fandom.com/wiki/Category:Characters
 insert into employees (`first_name`, `last_name`, `national_park`, `job_type`) values
     ('Mark', 'Corrigan', 'Joshua Tree', 'Camp Host'),
     ('Jez', 'Usbourne', 'Joshua Tree', 'Camp Host'),
@@ -105,6 +108,7 @@ insert into hosts (`employee_id`, `campground_id`, `campsite_id`, `services`, `o
     (7, 7, 27, 'internet access, hot cocoa', '10-3pm everyday');
 
 -- Seed some parties
+-- Source: https://kingofthehill.fandom.com/wiki/Category:Characters
 insert into parties (`first_name`, `last_name`, `phone`, `email`, `size`, `vehicles`) values
     ('Hank', 'Hill', '409-777-1234', '', 3, 1),
     ('Dale', 'Gribble', '409-777-2345', 'rustyshackleford@conspiracy.net', 3, 1),
