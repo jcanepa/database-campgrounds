@@ -31,7 +31,7 @@ and campsites.id not in (
 group by name;
 
 -- List all amenities types offered and all the national park campgrounds that offer them in a comma-separated list.
-select feature, GROUP_CONCAT(campgrounds.`name` SEPARATOR ', ')
+select feature, GROUP_CONCAT(campgrounds.`name` SEPARATOR ', ') as campgrounds
 from campground_amenities
 join campgrounds on campground_amenities.campground_id = campgrounds.id
 group by feature;
