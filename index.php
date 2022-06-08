@@ -48,7 +48,7 @@
             <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div class="px-4 py-6 sm:px-0">
                     <div class="flex items-end mb-4 w-100">
-                        <textarea v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3 w-4/5 h-24"></textarea>
+                        <textarea v-model="query" type="text" placeholder="Enter your query" class="rounded-md shadow-sm text-md p-3 w-4/5 h-48"></textarea>
                         <input v-on:click="execute" type="button" value="Submit" class="w-1/6 ml-2 py-3 px-4 shadow-sm text-sm font-medium rounded-md text-white cursor-pointer bg-amber-700 hover:bg-amber-800">
                     </div>
                     <p v-if="db_request_error" color="text-red-600">
